@@ -1,5 +1,14 @@
 # nps_service
 
+Why Hanami?
+1. Speed (response time is important) — Hanami has the smaller call stack than Rails
+2. Safety (can't be tampered) — Hanami has very small response cycle in case of invalid requests and nice validation tools.
+3. Data integrity — Hanami uses dry-validation.
+
+Data Integrity
+1. Validation of input parameters in `apps/api/controllers/ratings/create.rb`
+2. Validation of data in tables via checks made in migration `db/migrations/20220409074044_create_ratings.rb`
+
 ## Setup
 * Create `.env.development` with following content
 ```

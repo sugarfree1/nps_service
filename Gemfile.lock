@@ -118,6 +118,15 @@ GEM
       url_mount (~> 0.2.1)
     ice_nine (0.11.2)
     inflecto (0.0.2)
+    jsonapi-deserializable (0.2.0)
+    jsonapi-hanami (0.1.2)
+      jsonapi-rb (~> 0.1.1)
+    jsonapi-rb (0.1.2)
+      jsonapi-deserializable (~> 0.1)
+      jsonapi-serializable (~> 0.1)
+    jsonapi-renderer (0.2.2)
+    jsonapi-serializable (0.3.1)
+      jsonapi-renderer (~> 0.2.0)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     matrix (0.4.2)
@@ -186,6 +195,7 @@ DEPENDENCIES
   hanami (~> 1.3)
   hanami-model (~> 1.3)
   hanami-webconsole
+  jsonapi-hanami
   pg
   rake
   rspec
