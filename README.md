@@ -8,6 +8,7 @@ Why Hanami?
 Data Integrity
 1. Validation of input parameters in `apps/api/controllers/ratings/create.rb`
 2. Validation of data in tables via checks made in migration `db/migrations/20220409074044_create_ratings.rb`
+3. Protection against tampering could be done with unique `respondent_id`, for example: `abcd-1234`
 
 ## Setup
 * Create `.env.development` with following content
@@ -69,6 +70,26 @@ docker-compose exec web sh
 ```
 
 * Run `hanami db create` and `hanami db prepare`
+
+## Routes
+                Name Method     Path                           Action
+
+                     POST       /api/ratings                   Api::Controllers::Ratings::Create
+                     GET, HEAD  /api/ratings                   Api::Controllers::Ratings::Index
+
+
+## Checks
+After successful `make dockerize` you should be able to send requests to `http://localhost:2300`
+
+Use some kind of REST client for your browser. For example RESTED for Google Chrome.
+
+Use `POST /api/ratings` for creating rating and updating (whether it is a duplicate submission): use cases A+B.
+Example JSON:
+`{"rating": {"score": 1, "touchpoint": "realtor_feedback", "respondent_class": "seller", "object_class": "realtor", "respondent_id": 123324, "object_id": 321141}}`
+
+Use `GET /api/ratings` for fetching list of ratings by `touchpoint`, `respondent_class`, `object_class`: use case C.
+Example request string:
+`http://localhost:2300/api/ratings?touchpoint=realtor_feedback&respondent_class=seller&object_class=realtor`
 
 ## Inspiration
 
