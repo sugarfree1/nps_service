@@ -7,10 +7,16 @@ class RatingRepository < Hanami::Repository
   end
 
   def find_by_classes(params)
-    ratings.where(
-      touchpoint: params[:touchpoint],
-      respondent_class: params[:respondent_class],
-      object_class: params[:object_class]
-    )
+    rel = ratings.where(touchpoint: params[:touchpoint])
+
+    unless params[:respondent_class].nil?
+      rel = rel.where(respondent_class: params[:respondent_class])
+    end
+
+    unless params[:object_class].nil?
+      rel = rel.where(object_class: params[:object_class])
+    end
+
+    rel
   end
 end

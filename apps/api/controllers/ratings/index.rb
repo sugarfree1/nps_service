@@ -6,8 +6,8 @@ module Api
 
         params do
           required(:touchpoint) { filled? & str? & included_in?(%w(realtor_feedback property_feedback)) }
-          required(:respondent_class) { filled? & str? & included_in?(%w(seller buyer additional_buyer)) }
-          required(:object_class) { filled? & str? & included_in?(%w(realtor property)) }
+          optional(:respondent_class) { str? & included_in?(%w(seller buyer additional_buyer)) }
+          optional(:object_class) { str? & included_in?(%w(realtor property)) }
         end
 
         def call(params)
